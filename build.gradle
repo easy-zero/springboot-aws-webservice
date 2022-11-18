@@ -1,0 +1,38 @@
+// 플러그인 의존성 관리를 위한 설정
+buildscript {
+    ext {   // build.gradle 에서 사용할 전역 변수 설정
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 플러그인 의존성 적용여부 결정 (*필수)
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'    // 스프링부트 의존성 관리 플러그인
+
+group 'com.easyzero'
+version '1.0-SNAPSHOT'
+
+// 의존성 라이브러리 내려받을 저장소
+repositories {
+    mavenCentral()
+    jcenter()   // mavenCentral 보다 라이브러리 업로드 난이도 낮으며 mavenCentral 업로드 자동화 가능
+}
+
+// 의존성 선언 (*특정 버전 명시하지 않아야 ext 에 선언된 버전으로 자동 설정 가능)
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}
