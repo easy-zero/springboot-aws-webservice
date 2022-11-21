@@ -29,6 +29,9 @@ repositories {
 
 // 의존성 선언 (*특정 버전 명시하지 않아야 ext 에 선언된 버전으로 자동 설정 가능)
 dependencies {
+    annotationProcessor('org.projectlombok:lombok')
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
